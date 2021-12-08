@@ -17,10 +17,7 @@ app.use(
     origin: "*",
   })
 );
-// parse requests of content-type - application/json
 
-// Configuring the database
-// const dbConfig = require('./config/development.config.js');
 const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
@@ -28,7 +25,7 @@ mongoose.Promise = global.Promise;
 // Connecting to the database
 mongoose
   .connect(
-    "mongodb+srv://Standage:Standage0307@laptopdatabase.msrf4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongodb+srv://Bolaji:<password>@cluster0.p3avd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     // 'mongodb://12345:12345@nodeblog-shard-00-00.qd4rh.mongodb.net:27017,nodeblog-shard-00-01.qd4rh.mongodb.net:27017,nodeblog-shard-00-02.qd4rh.mongodb.net:27017/12345?ssl=true&replicaSet=atlas-mhnv1h-shard-0&authSource=admin&retryWrites=true&w=majority',
     {
       useNewUrlParser: true,
@@ -48,12 +45,11 @@ mongoose
 app.get("/", (req, res) => {
   res.json({
     message:
-      "Welcome to ExpressMongoApp application. Created by Bolaji Olayinka",
+      "Welcome to Express-MongoApp application. Created by Bolaji Olayinka",
   });
 });
 
-require("./app/routes/entry.routes.js")(app);
-require("./app/routes/auth.routes.js")(app);
+require("./app/routes/product.routes.js")(app);
 
 // listen for requests
 app.listen(port, () => {
