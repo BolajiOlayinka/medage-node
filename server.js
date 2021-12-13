@@ -25,7 +25,7 @@ mongoose.Promise = global.Promise;
 // Connecting to the database
 mongoose
   .connect(
-    "mongodb+srv://Bolaji:<password>@cluster0.p3avd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongodb+srv://Bolaji:12345@cluster0.p3avd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     // 'mongodb://12345:12345@nodeblog-shard-00-00.qd4rh.mongodb.net:27017,nodeblog-shard-00-01.qd4rh.mongodb.net:27017,nodeblog-shard-00-02.qd4rh.mongodb.net:27017/12345?ssl=true&replicaSet=atlas-mhnv1h-shard-0&authSource=admin&retryWrites=true&w=majority',
     {
       useNewUrlParser: true,
@@ -50,6 +50,8 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/product.routes.js")(app);
+require("./app/routes/category.routes.js")(app);
+require("./app/routes/cart.routes.js")(app);
 
 // listen for requests
 app.listen(port, () => {

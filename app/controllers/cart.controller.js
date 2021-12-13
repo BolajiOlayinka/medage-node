@@ -1,4 +1,4 @@
-const Cart = require("../models/cart");
+const Cart = require("../models/cart.model.js");
 
 exports.addItemToCart = (req, res) => {
   Cart.findOne({ user: req.user._id }).exec((error, cart) => {

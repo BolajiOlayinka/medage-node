@@ -1,7 +1,7 @@
 {
-  "name": "vasiti-backend",
+  "name": "medage-backend",
   "version": "1.0.0",
-  "description": "API for vasiti backend",
+  "description": "API for medage backend",
   "main": "server.js",
   "scripts": {
     "dev": "env-cmd -f ./config/dev.env nodemon server.js",
@@ -13,7 +13,7 @@
     "Express",
     "Node",
     "MongoDB",
-    "Vasiti Backend"
+    "Medage Backend"
   ],
   "author": "Bolaji Olayinka",
   "license": "ISC",

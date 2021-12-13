@@ -2,7 +2,7 @@ module.exports = (app) => {
     const Cart = require('../controllers/cart.controller.js');
 
     // Add items to cart
-    app.post('/addtocart', Cart.addItemToCart);
+    app.post('/addtocart/cartId', Cart.addItemToCart);
 
     // Get Items in a cart
     app.get('/getcart', Cart.getCartItems);
