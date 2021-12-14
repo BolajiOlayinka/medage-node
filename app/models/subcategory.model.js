@@ -6,7 +6,6 @@ const SubCategorySchema = mongoose.Schema({
      required: true
     },
     display_name:String,
-    category_group:String,
     category_group:String
 }, {
     timestamps: true

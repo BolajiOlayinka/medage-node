@@ -8,12 +8,12 @@ module.exports = (app) => {
     app.get('/api/category', Category.getAll);
 
     // Get a single Category by Id
-    app.get('/category/:categoryId', Category.getById);
+    app.get('/api/category/:categoryId', Category.getById);
 
 
     // Update a Category by Id
-    app.put('/category/:categoryId', Category.update);
+    app.put('/api/category/:categoryId', Category.update);
 
     // Delete a Category by Id
-    app.delete('/category/:categoryId', Category.delete);
+    app.delete('/api/category/:categoryId', Category.delete);
 }
