@@ -22,13 +22,23 @@ exports.create = (req, res) => {
   }
 
   const product = new Product({
-    product_name: req.body.product_name,
-    product_description: req.body.product_description,
-    product_varieties:req.body.product_varieties,
-    color:req.body.color,
-    size:req.body.size,
-    quantity:req.body.quantity,
-    price:req.body.price
+    title:req.body.title,
+    display_title:req.body.display_title,
+    quantity_available:req.body.quantity_available,
+    price:req.body,price,
+    thumbnail_one:req.body.thumbnail_one,
+    thumbnail_two:req.body.thumbnail_two,
+    thumbnail_three:req.body.thumbnail_three,
+    // verification:req.body.verification,
+    // description:req.body.description,
+    // organisation_category:req.body.orgranisation_category,
+    nafdac_reg:req.body.nafdac_reg,
+    description:req.body.description,
+    product_measurement:req.body.measurement,
+    product_category:req.body.product_category,
+    product_sub_category:req.body.product_subcategory,
+    product_user:req.body.product_user
+    
   });
   product
     .save()
