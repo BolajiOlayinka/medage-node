@@ -1,16 +1,17 @@
 const express = require("express");
 const cors = require("cors");
-var multer = require("multer");
-var upload = multer();
+// var multer = require("multer");
+// var upload = multer();
 const port = process.env.PORT || 8000;
+const dotenv = require('dotenv');
+dotenv.config();
 
 // create express app
 const app = express();
-
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(upload.array());
+// app.use(upload.array());
 app.use(express.static("public"));
 app.use(
   cors({
@@ -25,7 +26,7 @@ mongoose.Promise = global.Promise;
 // Connecting to the database
 mongoose
   .connect(
-    "mongodb+srv://Bolaji:12345@cluster0.p3avd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    `${process.env.MONGO_URL}`,
     // 'mongodb://12345:12345@nodeblog-shard-00-00.qd4rh.mongodb.net:27017,nodeblog-shard-00-01.qd4rh.mongodb.net:27017,nodeblog-shard-00-02.qd4rh.mongodb.net:27017/12345?ssl=true&replicaSet=atlas-mhnv1h-shard-0&authSource=admin&retryWrites=true&w=majority',
     {
       useNewUrlParser: true,

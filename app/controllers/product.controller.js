@@ -1,58 +1,101 @@
-// const express = require('express');
+const express = require('express');
+
+// const upload = require('../utils/multer');
+// const cloudinary = require('../utils/cloudinary');
+// const {CloudinaryStorage} = require("multer-storage-cloudinary");
+// const multer = require('multer');
+const cloudinary =require('../utils/cloudinary');
 const Product = require("../models/product.model.js");
 
 
-exports.create = (req, res) => {
+  // app.post('/api/images', parser.single("image"), (req, res) => {
+  //   console.log(req.file) // to see what is returned to you
+  //   const image = {};
+  //   image.url = req.file.url;
+  //   image.id = req.file.public_id;
+  //   Image.create(image) // save image information in database
+  //     .then(newImage => res.json(newImage))
+  //     .catch(err => console.log(err));
+  // });
+// exports.create=(parser.single(), async(req,res)=>{
+//   console.log(req.file)
+// })
+
+exports.create=async(req, res) => {
+  // console.log(req.file)
+  // console.log(req.files)
+  if (!req.files) return res.send("Please upload a file");
+  const {title,display_title,quantity_available,price,description,product_measurement,nafdac_reg,
+    product_category,product_sub_category,product_user} = req.body
   // console.log(req.body);
-  // Validate request because in model we required the title
-  if (!req.body.product_name) {
+  if (!title) {
     return res.status(400).send({
-      message: "Please enter Product Name",
+      message: "Please enter Product Title",
     });
   }
-  if (!req.body.product_description) {
+  if (!req.body.display_title) {
     return res.status(400).send({
       message: "Please enter Product Description",
     });
   }
-  if (!req.body.product_varieties.price) {
+  if (!req.body.quantity_available) {
     return res.status(400).send({
       message: "Please enter Price",
     });
   }
-
+try{
+  // console.log(req.files);
+  const files = Object.values(req.files)
+  // console.log(files)
+  // console.log(Object.values(files));
+  const urls=[];
+  for (const file of files){
+    // console.log(file[0].path)
+    const {path} = file[0];
+    const newPath = await cloudinary.uploader.upload(path,{folder:"product"});
+    urls.push(newPath);
+  }
+// console.log(urls)
+  // console.log(urls)
+  // const result = await cloudinary.uploader.upload(req.files);
+  // console.log(result)
+  // res.send('1,2,3')
   const product = new Product({
     title:req.body.title,
-    display_title:req.body.display_title,
-    quantity_available:req.body.quantity_available,
-    price:req.body,price,
-    thumbnail_one:req.body.thumbnail_one,
-    thumbnail_two:req.body.thumbnail_two,
-    thumbnail_three:req.body.thumbnail_three,
-    // verification:req.body.verification,
-    // description:req.body.description,
-    // organisation_category:req.body.orgranisation_category,
-    nafdac_reg:req.body.nafdac_reg,
-    description:req.body.description,
-    product_measurement:req.body.measurement,
-    product_category:req.body.product_category,
-    product_sub_category:req.body.product_subcategory,
-    product_user:req.body.product_user
+    display_title:display_title,
+    quantity_available:quantity_available,
+    price:price,
+    thumbnail_one:urls[0].url,
+    thumbnail_two:urls[1].url,
+    thumbnail_three:urls[2].url,
+    nafdac_reg:nafdac_reg,
+    description:description,
+    product_measurement:product_measurement,
+    product_category:product_category,
+    product_sub_category:product_sub_category,
+    product_user:product_user
     
   });
-  product
-    .save()
-    .then((newproduct) => {
-      res.send(newproduct);
-
-      // console.log(res)
-    })
-    .catch((err) => {
+  await product
+  .save()
+  .then((newproduct) => {
+    // res.send(newproduct);
+    if (newproduct) {
+      return res.status(200).json({
+        info: 'Product Created',
+        data: newproduct,
+        status:200
+      });
+  
+  }})
+}catch(err) {
+  console.log(err)
       res.status(500).send({
         message: err.message || "Some error occurred while creating the product.",
       });
-    });
-};
+    };
+}
+
 
 // Get all and return all products.
 exports.getAll = (req, res) => {

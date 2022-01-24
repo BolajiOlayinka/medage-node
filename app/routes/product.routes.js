@@ -1,8 +1,10 @@
 module.exports = (app) => {
     const Product = require('../controllers/product.controller.js');
+    const upload  =require('../utils/multer')
 
     // Create a new post
-    app.post('/product', Product.create);
+    const pictureArr =[{name:'thumbnail_one',maxCount:1},{name:'thumbnail_two',maxCount:1},{name:'thumbnail_three',maxCount:1}]
+    app.post('/product',upload.fields(pictureArr), Product.create);
 
     // Get all product
     app.get('/product', Product.getAll);
