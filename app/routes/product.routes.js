@@ -14,7 +14,7 @@ module.exports = (app) => {
 
 
     // Update a product by Id
-    app.put('/product/:productId', Product.update);
+    app.put('/product/:productId',upload.fields(pictureArr), Product.update);
 
     // Delete a product by Id
     app.delete('/product/:productId', Product.delete);
