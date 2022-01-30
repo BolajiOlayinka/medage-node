@@ -2,35 +2,71 @@ const User = require("../models/user.model.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const shortid = require("shortid");
+const cloudinary = require("../utils/cloudinary");
 
 const generateJwtToken = (_id, role) => {
-  return jwt.sign({ _id, role }, process.env.JWT_SECRET, {
+  return jwt.sign({ _id, role },`${process.env.JWT_SECRET}`, {
     expiresIn: "1d",
   });
 };
 
-exports.signup = (req, res) => {
-  console.log(req.files)
-  console.log(req.body.profile)
-  if (req.body){
-    res.send('1,2,3')
-  }
-  // User.findOne({ email: req.body.email }).exec(async (error, user) => {
-  //   if (user)
-  //     return res.status(400).json({
-  //       error: "User already registered",
-  //     });
+exports.signup = async (req, res) => {
+ try{
+  const urls = [];
+   if(req.files){
+    const files = Object.values(req.files);
+    for (const file of files) {
+      const { path } = file[0];
+      const newPath = await cloudinary.uploader.upload(path, {
+        folder: "user",
+      });
+      urls.push(newPath);
+    }
+   }
 
-  //   const { email, password, profile,  } = req.body;
+  // res.send(req)
+  User.findOne({ email: req.body.email }).exec(async (error, user) => {
+    if (user)
+      return res.status(400).json({
+        error: "User already registered",
+      });
+     
+    const { email, password,user_type,contact_number,business_name  } = req.body;
+    const hash_password = await bcrypt.hash(password, 10);
+    const _user = new User({
+      email,
+      password,
+      user_type,
+      contact_number,
+      business_name,
+      hash_password,
+      licence_doc:urls[0].url || '',
+      profile_picture:urls[1].url || '',
+      username: shortid.generate(),
+    });
+     _user.save((error, user) => {
+      if (error) {
+        console.log(error)
+        return res.status(400).json({
+          message: "Something went wrong",
+        });
+      }
 
-  //   const hash_password = await bcrypt.hash(password, 10);
-    // const _user = new User({
-    //   firstName,
-    //   lastName,
-    //   email,
-    //   hash_password,
-    //   username: shortid.generate(),
-    // });
+      if (user) {
+        const token = generateJwtToken(user._id, user.role);
+        const { _id,email, role, business_name } = user;
+        return res.status(201).json({
+          token,
+          user: { _id, email, business_name, role },
+        });
+      }
+    });
+ })
+    
+    
+  
+  
+  
 
     // _user.save((error, user) => {
     //   if (error) {
@@ -48,8 +84,10 @@ exports.signup = (req, res) => {
     //     });
     //   }
     // });
-  // });
-};
+  }catch(e){
+    console.log(e)
+  }
+}
 
 exports.signin = (req, res) => {
   User.findOne({ email: req.body.email }).exec(async (error, user) => {

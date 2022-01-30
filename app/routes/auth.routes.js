@@ -18,7 +18,7 @@ module.exports = (app) => {
 const Auth =require('../controllers/user.controller.js');
 const upload  =require('../utils/multer')
 
-const uploadDocs =[{name:'profile.licence_doc',maxCount:1},{name:'profile.profile_picture',maxCount:1}]
+const uploadDocs =[{name:'licence_doc',maxCount:1},{name:'profile_picture',maxCount:1}]
 app.post('/user/signup',upload.fields(uploadDocs), Auth.signup);
 
 app.post('/user/signin', Auth.signin);
