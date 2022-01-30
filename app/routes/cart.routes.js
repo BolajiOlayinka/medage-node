@@ -2,12 +2,12 @@ module.exports = (app) => {
     const Cart = require('../controllers/cart.controller.js');
 
     // Add items to cart
-    app.post('/addtocart/cartId', Cart.addItemToCart);
+    app.post('/user/cart/:id', Cart.addItemToCart);
 
     // Get Items in a cart
-    app.get('/getcart', Cart.getCartItems);
+    app.get('/user/getcart', Cart.getCartItems);
 
     // Delete an Item in Cart
-    app.delete('/cart/:cartId', Cart.removeCartItems);
+    app.delete('/user/cart/:id', Cart.removeCartItems);
 
 }

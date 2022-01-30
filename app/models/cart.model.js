@@ -1,24 +1,15 @@
-module.exports= function Cart(oldCart){
-    this.items=oldCart.items || {};
-    this.totalQty=oldCart.totalQty || 0;
-    this.totalPrice=oldCart.totalPrice || 0;
+const mongoose = require('mongoose');
 
-    this.add=function(item, id){
-        var storedItem=this.items[id];
-        if (!storedItem){
-            storedItem=this.items[id]={item:item, qty:0, price:0};
-
+const cartSchema = new mongoose.Schema({
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    cartItems: [
+        {
+            product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+            quantity: { type: Number, default: 1 },
+            //price: { type: Number, required: true }
         }
-        storedItem.qty++;
-        storedItem.price =storedItem.item.price * storedItem.qty;
-        this.totalQty++;
-        this.totalPrice+=storedItem.item.price;
-    }
-    this.generateArray =function(){
-var arr=[];
-for (var id in this.items) {
-    arr.push(this.items[id])
-}
-return arr;
-    }
-}
+    ]
+}, { timestamps: true });
+
+
+module.exports = mongoose.model('Cart', cartSchema);

@@ -55,6 +55,7 @@ require("./app/routes/category.routes.js")(app);
 require("./app/routes/subcategory.routes.js")(app);
 require("./app/routes/measurement.routes.js")(app);
 require("./app/routes/cart.routes.js")(app);
+require("./app/routes/auth.routes.js")(app);
 
 // listen for requests
 app.listen(port, () => {

@@ -1,4 +1,3 @@
-const express = require("express");
 const cloudinary = require("../utils/cloudinary");
 const Product = require("../models/product.model.js");
 
