@@ -56,7 +56,7 @@ exports.signup = async (req, res) => {
         if (user) {
           const token = generateJwtToken(user._id, user.role);
           const { _id, email, role, business_name } = user;
-          return res.status(201).json({
+          return res.status(200).json({
             token,
             user: { _id, email, business_name, role },
           });

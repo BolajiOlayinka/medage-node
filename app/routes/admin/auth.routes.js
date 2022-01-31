@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const AdminAuth =require('../../controllers/admin/auth.js');
+    const AdminAuth =require('../../controllers/admin/admin.controller.js');
 
     const { validateSignupRequest, isRequestValidated, validateSigninRequest } = require('../../utils/validators');
 

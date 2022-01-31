@@ -38,7 +38,8 @@ exports.signup = async(req, res) => {
         }
 
         if (data) {
-          return res.status(201).json({
+          return res.status(200).json({
+            status:200,
             message: "Admin created Successfully..!",
           });
         }
@@ -58,14 +59,15 @@ exports.signin = (req, res) => {
       ) {
         const token = jwt.sign(
           { _id: user._id, role: user.role },
-          process.env.JWT_SECRET,
+          `${process.env.JWT_SECRET}`,
           { expiresIn: "1d" }
         );
-        const { _id, firstName, lastName, email, role, fullName } = user;
+        const { _id, email, role,business_name } = user;
         res.cookie("token", token, { expiresIn: "1d" });
         res.status(200).json({
           token,
-          user: { _id, firstName, lastName, email, role, fullName },
+          status:200,
+          user: { _id, email, role,business_name },
         });
       } else {
         return res.status(400).json({
@@ -73,7 +75,7 @@ exports.signin = (req, res) => {
         });
       }
     } else {
-      return res.status(400).json({ message: "Something went wrong" });
+      return res.status(400).json({ message: "Uunauthorised, Check Email and Password" });
     }
   });
 };
