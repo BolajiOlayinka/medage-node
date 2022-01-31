@@ -40,8 +40,8 @@ exports.signup = async (req, res) => {
       contact_number,
       business_name,
       hash_password,
-      licence_doc:urls[0].url || '',
-      profile_picture:urls[1].url || '',
+      licence_doc:urls[0] !==undefined ? urls[0].url : '',
+      profile_picture:urls[1] !==undefined ? urls[1].url : '',
       username: shortid.generate(),
     });
      _user.save((error, user) => {
