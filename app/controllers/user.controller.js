@@ -1,4 +1,4 @@
-const User = require("../models/user.model.js");
+const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const shortid = require("shortid");
@@ -36,7 +36,7 @@ exports.signup = async (req, res) => {
       const hash_password = await bcrypt.hash(password, 10);
       const _user = new User({
         email,
-        password,
+        password:hash_password,
         user_type,
         contact_number,
         business_name,
@@ -87,14 +87,14 @@ exports.signin = (req, res) => {
         });
       } else {
         return res.status(401).json({
-          message: "Something went wrong",
+          message: "Unauthorised Sign in, please check email and password",
         });
       }
     } else {
       return res
         .status(401)
         .json({
-          message: "UnAuthorised Sign in, please check your login and password",
+          message: "UnAuthorised Sign in, please check your email and password",
         });
     }
   });
