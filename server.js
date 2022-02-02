@@ -1,7 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-// var multer = require("multer");
-// var upload = multer();
 const port = process.env.PORT || 8000;
 const dotenv = require('dotenv');
 dotenv.config();
@@ -57,6 +55,7 @@ require("./app/routes/measurement.routes.js")(app);
 require("./app/routes/cart.routes.js")(app);
 require("./app/routes/auth.routes.js")(app);
 require("./app/routes/admin/auth.routes.js")(app);
+require('./docs.js')(app,port);
 
 // listen for requests
 app.listen(port, () => {
