@@ -21,78 +21,66 @@ const swaggerOptions = {
 
 /**
  * @swagger
- * definitions:
- *   Admin:
- *    type: object
- *    properties:
- *      email:
- *        type: string
- *        description: Admin Email
- *        example: test@test.com
- *      password:
- *        type: string
- *        description: Admin Password
- *        example: 12345
- *      business_name:
- *        type: string
- *        description: Name of the Admin
- *        example: 12345
- */
-/**
- * @swagger
  * /api/admin/signup:
- *  post:
- *    description: use to signup as an admin
- *    requestBody:
- *      content:
- *       application/json:
- *        schema:
- *         $ref: '#/definitions/Admin'
- *    responses:
- *      '201':
- *        description: Admin Created Successfully
- */
-
-/**
- * 
- * @swagger
- * /api/admin/signin:
- *  post:
+ *   post:
  *    description: Use to signup as an admin
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
+ *      - name: Admin
+ *        in: body
+ *        description: Admin Signup
  *        required: false
  *        schema:
  *          type: string
- *          format: string
+ *          format: object
+ *          properties: 
+ *            email: 
+ *             type: string
+ *             required: true
+ *            password: 
+ *             type: string
+ *             required: true
+ *            business_name: 
+ *             type: string
+ *             required: true
+ *            user_type: 
+ *             type: string
+ *             required: true
  *    responses:
  *      '200':
- *        description: A successful response
- */
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request              
+*/
+/**
+ * @swagger
+ * /api/admin/signin:
+ *   post:
+ *    description: Use to signup as an admin
+ *    parameters:
+ *      - name: Admin
+ *        in: body
+ *        description: Admin Signup
+ *        required: false
+ *        schema:
+ *          type: string
+ *          format: object
+ *          properties: 
+ *            email: 
+ *             type: string
+ *             required: true
+ *            password: 
+ *             type: string
+ *             required: true
+ *    responses:
+ *      '200':
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request              
+*/
   
 /**
  * @swagger
  * /api/user/signup:
- *  post:
- *    description: Use to signup as an admin
- *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
- *        schema:
- *          type: string
- *          format: string
- *    responses:
- *      '200':
- *        description: A successful response
- */
-
-/**
- * @swagger
- * /api/admin/signin:
  *  post:
  *    description: Use to signup as an admin
  *    parameters:
@@ -464,6 +452,5 @@ const swaggerOptions = {
   const swaggerDocs = swaggerJsDoc(swaggerOptions);
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-console.log(swaggerDocs)
 
 }
