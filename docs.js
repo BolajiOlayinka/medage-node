@@ -55,15 +55,14 @@ const swaggerOptions = {
  * @swagger
  * /api/admin/signin:
  *   post:
- *    description: Use to signup as an admin
+ *    description: Use to signin as an admin
  *    parameters:
  *      - name: Admin
  *        in: body
- *        description: Admin Signup
+ *        description: Admin Signin
  *        required: false
  *        schema:
- *          type: string
- *          format: object
+ *          type: object
  *          properties: 
  *            email: 
  *             type: string
@@ -82,18 +81,37 @@ const swaggerOptions = {
  * @swagger
  * /api/user/signup:
  *  post:
- *    description: Use to signup as an admin
+ *    description: Use to signup as a user
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
+ *      - name: User
+ *        in: body
+ *        description: User Signup
  *        required: false
  *        schema:
- *          type: string
- *          format: string
+ *          format: object
+ *          properties: 
+ *            email: 
+ *             type: string
+ *             required: true
+ *            password: 
+ *             type: string
+ *             required: true
+ *            business_name: 
+ *             type: string
+ *             required: true
+ *            user_type: 
+ *             type: string
+ *             required: true
+ *            profile_picture:
+ *             type: string
+ *             required: false
+ *            contact_number:
+ *             type: string
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
@@ -102,352 +120,475 @@ const swaggerOptions = {
  *  post:
  *    description: Use to signup as an admin
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
+ *      - name: Product
+ *        in: body
+ *        description: Create Product
+ *        required: true
  *        schema:
- *          type: string
- *          format: string
+ *          format: object
+ *          properties: 
+ *            title: 
+ *             type: string
+ *             required: true
+ *            display_title: 
+ *             type: string
+ *             required: true
+ *            quantity_available: 
+ *             type: string
+ *             required: true
+ *            price: 
+ *             type: string
+ *             required: true
+ *            nafdac_reg:
+ *             type: string
+ *             required: false
+ *            product_category:
+ *             type: string
+ *            product_sub_category:
+ *             type: string
+ *            product_user:
+ *             type: string
+ *            thumbnail_one: 
+ *             type: string
+ *            thumbnail_two:
+ *             type: string
+ *            thumbnail_three:
+ *             type: string
+ *            product_measurement: 
+ *             type: string
+ *            description:
+ *             type: string
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
  * /api/product:
  *  get:
- *    description: Use to signup as an admin
- *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
- *        schema:
- *          type: string
- *          format: string
+ *    description: Use to get all products
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
- * /api/product/:id:
+ * /api/product/{id}:
  *  get:
- *    description: Use to signup as an admin
+ *    description: Use get a product by ID
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
+ *      - name: id
+ *        in: path
+ *        description: ID of product to retrieve
+ *        required: true
  *        schema:
  *          type: string
- *          format: string
+ *          format: string      
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
- * /api/product/:id:
+ * /api/product/{id}:
  *  put:
  *    description: Use to signup as an admin
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
+ *      - name: id
+ *        in: path
+ *        description: Numeric ID of product to edit
  *        required: false
+ *      - name: body
+ *        in: body
  *        schema:
  *          type: string
- *          format: string
+ *          format: object
+ *          properties:
+ *            title: 
+ *             type: string
+ *             required: true
+ *            display_title: 
+ *             type: string
+ *             required: true
+ *            quantity_available: 
+ *             type: string
+ *             required: true
+ *            price: 
+ *             type: string
+ *             required: true
+ *            nafdac_reg:
+ *             type: string
+ *             required: false
+ *            product_category:
+ *             type: string
+ *            product_sub_category:
+ *             type: string
+ *            product_user:
+ *             type: string
+ *            thumbnail_one: 
+ *             type: string
+ *            thumbnail_two:
+ *             type: string
+ *            thumbnail_three:
+ *             type: string
+ *            product_measurement: 
+ *             type: string
+ *            description:
+ *             type: string
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 /**
  * @swagger
- * /api/product/:id:
+ * /api/product/{id}:
  *  delete:
- *    description: Use to signup as an admin
+ *    description: ID of the product
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
- *        schema:
- *          type: string
- *          format: string
+ *      - name: id
+ *        in: path
+ *        description: Delete Product
+ *        required: true
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
  * /api/category:
  *  post:
- *    description: Use to signup as an admin
+ *    description: Create New Category
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
+ *      - name: Category
+ *        in: body
+ *        description: Create New Category
  *        required: false
  *        schema:
- *          type: string
- *          format: string
+ *          format: object
+ *          properties: 
+ *            name: 
+ *             type: string
+ *             required: true
+ *            display_name: 
+ *             type: string
+ *             required: true
+ *            description: 
+ *             type: string
+ *             required: true
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
  * /api/category:
  *  get:
- *    description: Use to signup as an admin
- *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
- *        schema:
- *          type: string
- *          format: string
+ *    description: get all Categories
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
- * /api/category/:id:
+ * /api/category/{id}:
  *  get:
- *    description: Use to signup as an admin
+ *    description: Use to get Category by ID
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
+ *      - name: id
+ *        in: path
+ *        description: ID of categories to return
+ *        required: true
  *        schema:
  *          type: string
- *          format: string
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
- * /api/category/:id:
+ * /api/category/{id}:
  *  put:
- *    description: Use to signup as an admin
+ *    description: Edit Category by its ID
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
+ *      - name: id
+ *        in: path
+ *        description: ID of the Category
+ *        required: true
+ *      - name: body
+ *        in: body
  *        schema:
- *          type: string
- *          format: string
+ *          type: object
+ *          format: object
+ *          properties:
+ *            name: 
+ *             type: string
+ *             required: true
+ *            display_name: 
+ *             type: string
+ *             required: true
+ *            description: 
+ *             type: string
+ *             required: true
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 /**
  * @swagger
- * /api/category/:id:
+ * /api/category/{id}:
  *  delete:
- *    description: Use to signup as an admin
+ *    description: Delete Category by ID
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
+ *      - name: id
+ *        in: path
+ *        description: ID of the category you want to delete
  *        required: false
  *        schema:
  *          type: string
  *          format: string
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 /**
  * @swagger
  * /api/measurement:
  *  post:
- *    description: Use to signup as an admin
+ *    description: Create 
  *    parameters:
  *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
+ *        in: body
+ *        description: Create a new measurement
+ *        required: true
  *        schema:
- *          type: string
- *          format: string
+ *          format: object
+ *          properties: 
+ *            display_cat: 
+ *             type: string
+ *             required: true
+ *            name: 
+ *             type: string
+ *             required: true
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
  * /api/measurement:
  *  get:
- *    description: Use to signup as an admin
- *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
- *        schema:
- *          type: string
- *          format: string
+ *    description: get all Measurements
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
- * /api/measurement/:id:
- *  get:
- *    description: Use to signup as an admin
+ * /api/measurement/{id}:
+  *  get:
+ *    description: Use to get Measurement by ID
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
+ *      - name: id
+ *        in: path
+ *        description: ID of categories to return
+ *        required: true
  *        schema:
  *          type: string
- *          format: string
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
- * /api/measurement/:id:
+ * /api/measurement/{id}:
  *  put:
- *    description: Use to signup as an admin
+ *    description: Edit Measurement by its ID
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
+ *      - name: id
+ *        in: path
+ *        description: ID of the Measurement
+ *        required: true
+ *      - name: body
+ *        in: body
  *        schema:
- *          type: string
- *          format: string
+ *          type: object
+ *          format: object
+ *          properties:
+ *            display_cat: 
+ *             type: string
+ *             required: true
+ *            name: 
+ *             type: string
+ *             required: true
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 /**
  * @swagger
- * /api/measurement/:id:
+ * /api/measurement/{id}:
  *  delete:
- *    description: Use to signup as an admin
+ *    description: Delete Measurement by ID
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
+ *      - name: id
+ *        in: path
+ *        description: ID of the measurement you want to delete
  *        required: false
  *        schema:
  *          type: string
- *          format: string
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 /**
  * @swagger
  * /api/subcategories:
  *  post:
- *    description: Use to signup as an admin
+ *    description: Create New Sub Category
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
+ *      - name: Category
+ *        in: body
+ *        description: Create Sub Category
  *        required: false
  *        schema:
- *          type: string
- *          format: string
+ *          format: object
+ *          properties: 
+ *            name: 
+ *             type: string
+ *             required: true
+ *            display_name: 
+ *             type: string
+ *             required: true
+ *            category_group: 
+ *             type: string
+ *             required: true
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
  * /api/subcategories:
  *  get:
- *    description: Use to signup as an admin
- *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
- *        schema:
- *          type: string
- *          format: string
+ *    description: get all Sub Categories
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
- * /api/subcategories/:id:
+ * /api/subcategories/{id}:
  *  get:
- *    description: Use to signup as an admin
+ *    description: Use to get Sub Category by ID
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
+ *      - name: id
+ *        in: path
+ *        description: ID of Sub categories to return
+ *        required: true
  *        schema:
  *          type: string
- *          format: string
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 
 /**
  * @swagger
- * /api/subcategories/:id:
+ * /api/subcategories/{id}:
  *  put:
- *    description: Use to signup as an admin
+ *    description: Edit Sub Category by its ID
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
- *        required: false
+ *      - name: id
+ *        in: path
+ *        description: ID of the Sub Category
+ *        required: true
+ *      - name: body
+ *        in: body
  *        schema:
- *          type: string
- *          format: string
+ *          type: object
+ *          format: object
+ *          properties:
+ *            name: 
+ *             type: string
+ *             required: true
+ *            display_name: 
+ *             type: string
+ *             required: true
+ *            category_group: 
+ *             type: string
+ *             required: true
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
 /**
  * @swagger
- * /api/subcategories/:id:
+ * /api/subcategories/{id}:
  *  delete:
- *    description: Use to signup as an admin
+ *    description: Delete SubCategory by ID
  *    parameters:
- *      - name: customer
- *        in: query
- *        description: Name of our customer
+ *      - name: id
+ *        in: path
+ *        description: ID of the subcategory you want to delete
  *        required: false
  *        schema:
  *          type: string
  *          format: string
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: A successful response  
+ *      '400': 
+ *        description: Bad Request 
  */
   const swaggerDocs = swaggerJsDoc(swaggerOptions);
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
