@@ -44,7 +44,7 @@ mongoose
 app.get("/", (req, res) => {
   res.json({
     message:
-      "Welcome to Express-MongoApp application. Created by Bolaji Olayinka",
+      "Welcome to Medage application Created with MERN",
   });
 });
 
