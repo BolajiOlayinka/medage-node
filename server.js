@@ -24,7 +24,7 @@ mongoose.Promise = global.Promise;
 // Connecting to the database
 mongoose
   .connect(
-    `mongodb+srv://Bolaji:12345@cluster0.p3avd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+    `${process.env.MONGO_URI}`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
