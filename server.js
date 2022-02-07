@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const port = process.env.PORT || 8000;
+var multer = require("multer");
+var upload = multer();
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -9,7 +11,7 @@ const app = express();
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(upload.array());
+app.use(upload.array());
 app.use(express.static("public"));
 app.use(
   cors({
@@ -25,7 +27,6 @@ mongoose.Promise = global.Promise;
 mongoose
   .connect(
     `${process.env.MONGO_URL}`,
-    // 'mongodb://12345:12345@nodeblog-shard-00-00.qd4rh.mongodb.net:27017,nodeblog-shard-00-01.qd4rh.mongodb.net:27017,nodeblog-shard-00-02.qd4rh.mongodb.net:27017/12345?ssl=true&replicaSet=atlas-mhnv1h-shard-0&authSource=admin&retryWrites=true&w=majority',
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -44,7 +45,7 @@ mongoose
 app.get("/", (req, res) => {
   res.json({
     message:
-      "Welcome to Medage application Created with MERN",
+      "Welcome to Medage application Created with Node, Express and MongoDB",
   });
 });
 
