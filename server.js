@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const port = process.env.PORT || 8000;
-var multer = require("multer");
-var upload = multer();
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -11,7 +9,7 @@ const app = express();
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(upload.array());
+// app.use(upload.array());
 app.use(express.static("public"));
 app.use(
   cors({
@@ -26,7 +24,7 @@ mongoose.Promise = global.Promise;
 // Connecting to the database
 mongoose
   .connect(
-    `${process.env.MONGO_URL}`,
+    `mongodb+srv://Bolaji:12345@cluster0.p3avd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
