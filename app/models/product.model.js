@@ -14,6 +14,9 @@ const ProductSchema = mongoose.Schema({
     verification:Boolean,
     description:String,
     organisation_category:String,
+    city:String,
+    expiry_date:Date,
+    address:String,
     nafdac_reg:{
         type:String,
         required:true

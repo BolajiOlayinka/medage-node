@@ -14,6 +14,9 @@ exports.create = async (req, res) => {
     product_category,
     product_sub_category,
     product_user,
+    city,
+    address,
+    expiry_date
   } = req.body;
   // console.log(req.body);
   if (!title) {
@@ -55,6 +58,9 @@ exports.create = async (req, res) => {
       product_category: product_category,
       product_sub_category: product_sub_category,
       product_user: product_user,
+      city:city,
+      address:address,
+      expiry_date
     });
     await product.save().then((newproduct) => {
       if (newproduct) {
@@ -139,6 +145,9 @@ exports.update = async (req, res) => {
     product_category,
     product_sub_category,
     product_user,
+    city,
+    expiry_date,
+    address
   } = req.body;
   // Validate Request because title is required
   if (!title) {
@@ -183,6 +192,9 @@ exports.update = async (req, res) => {
         product_category: product_category,
         product_sub_category: product_sub_category,
         product_user: product_user,
+        city: city,
+        expiry_date: expiry_date,
+        address: address
       },
       { new: true }
     ).then((newproduct) => {
