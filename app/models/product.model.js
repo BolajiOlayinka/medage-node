@@ -12,7 +12,6 @@ const ProductSchema = mongoose.Schema({
     thumbnail_two:String,
     thumbnail_three:String,
     verification:Boolean,
-    description:String,
     organisation_category:String,
     city:String,
     expiry_date:String,
