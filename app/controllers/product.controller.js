@@ -60,7 +60,7 @@ exports.create = async (req, res) => {
       product_user: product_user,
       city:city,
       address:address,
-      expiry_date
+      expiry_date:expiry_date
     });
     await product.save().then((newproduct) => {
       if (newproduct) {
@@ -72,7 +72,6 @@ exports.create = async (req, res) => {
       }
     });
   } catch (err) {
-    console.log(err);
     res.status(500).send({
       message: err.message || "Some error occurred while creating the product.",
     });
