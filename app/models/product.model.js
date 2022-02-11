@@ -5,13 +5,13 @@ const ProductSchema = mongoose.Schema({
      type: String,
      required: true
     },
-    display_title:String,
     quantity_available:String,
     price:Number,
     thumbnail_one:String,
     thumbnail_two:String,
     thumbnail_three:String,
     verification:Boolean,
+    description:String,
     organisation_category:String,
     city:String,
     expiry_date:String,
@@ -26,7 +26,7 @@ const ProductSchema = mongoose.Schema({
     },
     measurement:String,
     user:String,
-    category_id:String,
+    product_category:String,
     sub_category:String,
 }, {
     timestamps: true

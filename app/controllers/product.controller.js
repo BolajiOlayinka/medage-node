@@ -24,7 +24,7 @@ exports.create = async (req, res) => {
       message: "Please enter Product Title",
     });
   }
-  if (!req.body.display_title) {
+  if (!req.body.description) {
     return res.status(400).send({
       message: "Please enter Product Description",
     });
