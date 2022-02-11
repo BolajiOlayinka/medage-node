@@ -18,7 +18,7 @@ exports.create = async (req, res) => {
     address,
     expiry_date
   } = req.body;
-  // console.log(req.body);
+  console.log(req.body);
   if (!title) {
     return res.status(400).send({
       message: "Please enter Product Title",
