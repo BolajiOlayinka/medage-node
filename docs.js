@@ -482,7 +482,7 @@ const swaggerOptions = {
  */
 /**
  * @swagger
- * /api/subcategories:
+ * /api/sub_categories:
  *  post:
  *    description: Create New Sub Category
  *    parameters:
@@ -511,7 +511,7 @@ const swaggerOptions = {
 
 /**
  * @swagger
- * /api/subcategories:
+ * /api/sub_categories:
  *  get:
  *    description: get all Sub Categories
  *    responses:
@@ -523,7 +523,7 @@ const swaggerOptions = {
 
 /**
  * @swagger
- * /api/subcategories/{id}:
+ * /api/sub_categories/{id}:
  *  get:
  *    description: Use to get Sub Category by ID
  *    parameters:
@@ -542,7 +542,7 @@ const swaggerOptions = {
 
 /**
  * @swagger
- * /api/subcategories/{id}:
+ * /api/sub_categories/{id}:
  *  put:
  *    description: Edit Sub Category by its ID
  *    parameters:
@@ -573,7 +573,7 @@ const swaggerOptions = {
  */
 /**
  * @swagger
- * /api/subcategories/{id}:
+ * /api/sub_categories/{id}:
  *  delete:
  *    description: Delete SubCategory by ID
  *    parameters:
