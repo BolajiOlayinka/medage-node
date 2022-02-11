@@ -24,6 +24,9 @@ const userSchema = new mongoose.Schema(
       type:String,
       required: true,
     },
+    licence_no:{
+      type:String
+    },
     licence_doc:{
       type:String,
     },

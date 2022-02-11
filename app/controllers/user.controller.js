@@ -31,7 +31,7 @@ exports.signup = async (req, res) => {
           error: "User already registered",
         });
 
-      const { email, password, user_type, contact_number, business_name } =
+      const { email, password, user_type, contact_number, business_name,licence_no } =
         req.body;
       const hash_password = await bcrypt.hash(password, 10);
       const _user = new User({
@@ -41,6 +41,7 @@ exports.signup = async (req, res) => {
         contact_number,
         business_name,
         hash_password,
+        licence_no,
         licence_doc: urls[0] !== undefined ? urls[0].url : "",
         profile_picture: urls[1] !== undefined ? urls[1].url : "",
         username: shortid.generate(),
