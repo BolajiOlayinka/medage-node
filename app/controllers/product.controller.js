@@ -5,7 +5,7 @@ exports.create = async (req, res) => {
   if (!req.files) return res.send("Please upload a file");
   const {
     title,
-    display_title,
+    // display_title,
     quantity_available,
     price,
     description,
@@ -46,7 +46,7 @@ exports.create = async (req, res) => {
     }
     const product = new Product({
       title: req.body.title,
-      display_title: display_title,
+      // display_title: display_title,
       quantity_available: quantity_available,
       price: price,
       thumbnail_one: urls[0].url,

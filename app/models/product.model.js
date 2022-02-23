@@ -24,10 +24,10 @@ const ProductSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    measurement:String,
-    user:String,
+    product_measurement:String,
+    product_user:String,
     product_category:String,
-    sub_category:String,
+    product_sub_category:String,
 }, {
     timestamps: true
 });

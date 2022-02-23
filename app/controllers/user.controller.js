@@ -100,3 +100,55 @@ exports.signin = (req, res) => {
     }
   });
 };
+
+// Get all and return all users.
+exports.getAll = (req, res) => {
+  User.find()
+    .then((newuser) => {
+      // console.log(req)
+      const page = parseInt(req.query.page);
+      const limit = parseInt(req.query.limit);
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+      const result = newuser.slice(startIndex, endIndex);
+      if (!page) {
+        res.send(newuser);
+      } else {
+        res.send(result);
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving all users",
+      });
+    });
+};
+exports.getById = (req, res) => {
+  User.findById(req.params.userId)
+    .then((existinguser) => {
+      if (existinguser) {
+        return res.status(200).json({
+          info: "User Fetched",
+          data: existinguser,
+          status: 200,
+        });
+        // res.send(newproduct);
+      }
+      return res.status(404).send({
+        message: "User does not exist with id " + req.params.userId,
+      });
+    })
+    .catch((err) => {
+      if (err.kind === "ObjectId") {
+        return res.status(404).send({
+          message: "Product does not exist with id " + req.params.userId,
+        });
+      }
+      return res.status(500).send({
+        message:
+          "Some error occurred while retrieving the User with the User ID" +
+          req.params.userId,
+      });
+    });
+};
