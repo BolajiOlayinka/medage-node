@@ -3,7 +3,7 @@ const Measurement = require("../models/measurement.model.js");
 
 
 exports.create = (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   // Validate request because in model we required the title
   if (!req.body.display_cat) {
     return res.status(400).send({
