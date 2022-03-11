@@ -77,7 +77,7 @@ exports.getCartItems = (req, res) => {
   //const { user } = req.body.payload;
   //if(user){
   Cart.findOne({ user: req.user._id })
-    .populate("cartItems.product", "_id title price thumbnail_one")
+    .populate("cartItems.product", "_id title price thumbnail_one expiry_date product_measurement")
     .exec((error, cart) => {
       if (error) return res.status(400).json({ error });
       if (cart) {
@@ -89,6 +89,8 @@ exports.getCartItems = (req, res) => {
             img: item.product.thumbnail_one,
             price: item.product.price,
             qty: item.quantity,
+            expiry_date:item.expiry_date,
+            product_measurement:item.product_measurement
           };
         });
         res.status(200).json({ cartItems });
