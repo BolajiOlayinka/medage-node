@@ -6,7 +6,7 @@ const cloudinary = require("../utils/cloudinary");
 
 const generateJwtToken = (_id, role) => {
   return jwt.sign({ _id, role }, `${process.env.JWT_SECRET}`, {
-    expiresIn: "1d",
+    expiresIn: "1h",
   });
 };
 
@@ -142,7 +142,7 @@ exports.getById = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Product does not exist with id " + req.params.userId,
+          message: "User does not exist with id " + req.params.userId,
         });
       }
       return res.status(500).send({
