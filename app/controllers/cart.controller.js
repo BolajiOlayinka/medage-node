@@ -89,10 +89,10 @@ exports.getCartItems = (req, res) => {
             img: item.product.thumbnail_one,
             price: item.product.price,
             qty: item.quantity,
-            // expiry_date:item.product.expiry_date,
-            // product_measurement:item.product.product_measurement,
-            // product_category:item.product.product_category,
-            // nafdac_reg:item.product.nafdac_reg
+            expiry_date:item.product.expiry_date,
+            product_measurement:item.product.product_measurement,
+            product_category:item.product.product_category,
+            nafdac_reg:item.product.nafdac_reg
           };
         });
         res.status(200).json({ cartItems });

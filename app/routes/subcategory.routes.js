@@ -13,8 +13,8 @@ module.exports = (app) => {
 
 
     // Update a Category by Id
-    app.put('/api/sub_categories/:sub_categoryId',requireSignin, adminMiddleWare,superAdminMiddleware, SubCategory.update);
+    app.put('/api/sub_categories/:sub_categoryId',requireSignin, adminMiddleware,superAdminMiddleware, SubCategory.update);
 
     // Delete a Category by Id
-    app.delete('/api/sub_categories/:sub_categoryId',requireSignin, adminMiddleWare,superAdminMiddleware, SubCategory.delete);
+    app.delete('/api/sub_categories/:sub_categoryId',requireSignin, adminMiddleware,superAdminMiddleware, SubCategory.delete);
 }
