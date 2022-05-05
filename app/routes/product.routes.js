@@ -8,10 +8,10 @@ module.exports = (app) => {
     app.post('/api/product',upload.fields(pictureArr), requireSignin, Product.create);
 
     // Get all product
-    app.get('/api/product',requireSignin, Product.getAll);
+    app.get('/api/product', Product.getAll);
 
     // Get a single products by Id
-    app.get('/api/product/:productId',requireSignin,Product.getById);
+    app.get('/api/product/:productId',Product.getById);
 
 
     // Update a product by Id

@@ -16,9 +16,7 @@ app.use(
     origin: "*",
   })
 );
-
 const mongoose = require("mongoose");
-
 mongoose.Promise = global.Promise;
 
 // Connecting to the database

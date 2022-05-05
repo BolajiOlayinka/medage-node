@@ -6,5 +6,5 @@ const { validateSignupRequest, isRequestValidated, validateSigninRequest } = req
 const uploadDocs =[{name:'licence_doc',maxCount:1},{name:'profile_picture',maxCount:1}]
 app.post('/api/user/signup',upload.fields(uploadDocs), validateSignupRequest, Auth.signup);
 app.post('/api/user/signin',validateSigninRequest, isRequestValidated, Auth.signin);
-app.post('/api/user/:userId',Auth.getById);
+app.post('/api/user',Auth.getById);
 }
